@@ -1,23 +1,17 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View } from 'react-native';
-import { HelloWorld } from './src/HelloWorld';
+import { Platform, SafeAreaView, Text, View } from 'react-native';
+import { Main } from './components/Main';
+import { globalStyles } from './styles';
 
-const App = () => {
+export const App = () => {
+    const Wrapper = Platform.OS === 'ios' ? SafeAreaView : View;
     return (
-        <View style={styles.container}>
-            <HelloWorld />
+        <Wrapper style={globalStyles.view}>
             <StatusBar style="auto" />
-        </View>
+            <Main />
+            <Text>Platform: {Platform.OS}</Text>
+        </Wrapper>
     );
-}
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    }
-});
+};
 
 export default App;
